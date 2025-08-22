@@ -1,21 +1,169 @@
-:root { color-scheme: light dark; }
-* { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, sans-serif; }
-.container { max-width: 960px; margin: 0 auto; padding: 1rem; }
-h1 { font-size: 1.8rem; margin: 0 0 1rem; }
-form { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; align-items: end; margin-bottom: 1rem; }
-label { display: grid; gap: .25rem; font-size: .9rem; }
-label.wide { grid-column: span 2; }
-button { padding: .6rem .8rem; border: 1px solid #8883; border-radius: .6rem; background: #eee; cursor: pointer;}
-.card { background: #fff; color: #111; border-radius: .8rem; padding: 1rem; box-shadow: 0 2px 8px #0001; margin: 1rem 0; }
-.chart-wrap { position: relative; height: 260px; }
-@media (prefers-color-scheme: dark) {
-  .card { background: #111; color: #eee; box-shadow: 0 2px 8px #0006; }
-  button { background: #222; color: #eee; }
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #f8f9fa;
+  --card-bg: #ffffffee;
+  --text: #111;
+  --primary: #4dabf7;
+  --accent: #339af0;
+  --shadow: 0 4px 20px #0001;
 }
-.table-wrap { overflow: auto; max-height: 50vh; border: 1px solid #8883; border-radius: .6rem; }
-#hours { border-collapse: collapse; width: 100%; font-size: .9rem; }
-#hours th, #hours td { padding: .5rem .6rem; border-bottom: 1px solid #8882; text-align: left; }
-#status { min-height: 1.5rem; }
-.info { color: inherit; }
-.error { color: #c0392b; }
+
+body {
+  margin: 0;
+  font-family: 'Outfit', system-ui, sans-serif;
+  background: linear-gradient(to top, #d0e7ff, #f8f9fa);
+  color: var(--text);
+  transition: all 0.3s ease-in-out;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--primary);
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+button {
+  grid-column: span 2;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: var(--accent);
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  color: var(--primary);
+}
+
+.chart-wrap {
+  position: relative;
+  height: 300px;
+}
+
+.table-wrap {
+  overflow: auto;
+  max-height: 60vh;
+  border-radius: 1rem;
+  border: 1px solid #dee2e6;
+}
+
+#hours {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+#hours th, #hours td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+  text-align: left;
+}
+
+#status {
+  min-height: 1.5rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  color: #555;
+}
+
+.info {
+  color: #2c3e50;
+}
+
+.error {
+  color: #e03131;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0f11;
+    --card-bg: #1a1b1e;
+    --text: #f1f3f5;
+    --primary: #339af0;
+    --accent: #228be6;
+    --shadow: 0 4px 20px #0009;
+  }
+  body {
+    background: linear-gradient(to top, #1a1b1e, #0e0f11);
+  }
+  label { color: #ccc; }
+  input {
+    background: #2e2e33;
+    border-color: #444;
+    color: #fff;
+  }
+  #hours th, #hours td {
+    border-color: #444;
+  }
+
+  body[data-weather='sunny'] {
+  background: linear-gradient(to top, #ffe680, #fffdf0);
+}
+body[data-weather='cloudy'] {
+  background: linear-gradient(to top, #b0bec5, #eceff1);
+}
+body[data-weather='rainy'] {
+  background: linear-gradient(to top, #4dabf7, #a5d8ff);
+}
+body[data-weather='snowy'] {
+  background: linear-gradient(to top, #dbe4f1, #f8f9fa);
+}
+body[data-weather='stormy'] {
+  background: linear-gradient(to top, #495057, #343a40);
+}
+body[data-weather='foggy'] {
+  background: linear-gradient(to top, #cfd8dc, #eceff1);
+}
+}
