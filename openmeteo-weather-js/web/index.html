@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Open‑Meteo Wetter (HTML + JS)</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Wetter – Open‑Meteo</h1>
+      <form id="query-form">
+        <label>
+          Breite (lat)
+          <input id="lat" type="number" step="0.0001" value="47.3769" />
+        </label>
+        <label>
+          Länge (lon)
+          <input id="lon" type="number" step="0.0001" value="8.5417" />
+        </label>
+        <label class="wide">
+          Hourly Variablen
+          <input id="hourly" type="text" value="temperature_2m,weather_code" />
+        </label>
+        <label>
+          Zeitzone
+          <input id="tz" type="text" value="Europe/Zurich" />
+        </label>
+        <button type="submit">Vorhersage laden</button>
+      </form>
+
+      <section id="status"></section>
+
+      <section class="card">
+        <h2>Temperatur (°C)</h2>
+        <div class="chart-wrap">
+          <canvas id="tempChart" height="160"></canvas>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Stündliche Daten</h2>
+        <div class="table-wrap">
+          <table id="hours">
+            <thead>
+              <tr>
+                <th>Zeit</th>
+                <th>Temp (°C)</th>
+                <th>Wettercode</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
