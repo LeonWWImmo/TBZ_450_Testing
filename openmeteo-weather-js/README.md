@@ -39,9 +39,3 @@ localStorage.setItem('OPEN_METEO_API_BASE', 'http://dein-host:4000')
 ```
 GET http://localhost:4000/api/forecast?latitude=47.3769&longitude=8.5417&hourly=temperature_2m,weather_code&timezone=Europe/Zurich
 ```
-
-## Hinweise
-- In‑Memory Cache im Service (`CACHE_TTL_MS` per .env; Default 5 min).
-- Query‑Parameter werden 1:1 an Open‑Meteo weitergereicht (Basisvalidierung im Router).
-- Frontend nutzt Chart.js (CDN) für ein einfaches Temperatur‑Diagramm.
-- **Tests sind absichtlich NICHT enthalten**, damit ihr eigene Tests hinzufügen könnt.
