@@ -17,3 +17,14 @@ Die Tests werden meist automatisiert mit speziellen Tools ausgeführt.
 * **Hoher Schaden:** NASA verlor 1999 eine Raumsonde wegen falscher Einheiten (über 100 Mio. \$).
 
 
+## Aufgabe 3 – Preisberechnung
+Im Ordner `/tests-preisberechnung` ist ein Beispiel für die unterste Teststufe umgesetzt.  
+- `price.js` enthält die Berechnungslogik.  
+- `price.test.js` ist ein einfacher Testtreiber, der verschiedene Fälle prüft.  
+
+Die Tests können mit Node.js ausgeführt werden:
+```bash
+cd tests-preisberechnung
+node price.test.js
+
+
