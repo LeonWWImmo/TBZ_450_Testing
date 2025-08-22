@@ -28,3 +28,25 @@ cd tests-preisberechnung
 node price.test.js
 
 
+## Aufgabe 3 – Bonus
+Im gegebenen Beispielcode gibt es einen Fehler in der Rabattlogik:  
+Die Bedingung für 5 oder mehr Extras wird nie erreicht, weil bereits `extras >= 3` zuerst geprüft wird.  
+
+**Falsch:**
+```java
+if (extras >= 3) 
+    addon_discount = 10;
+else if (extras >= 5)
+    addon_discount = 15;
+
+Korrekt:
+
+if (extras >= 5)
+    addon_discount = 15;
+else if (extras >= 3)
+    addon_discount = 10;
+else
+    addon_discount = 0;
+
+
+Damit funktioniert auch der 15%-Rabatt ab 5 Extras korrekt.
