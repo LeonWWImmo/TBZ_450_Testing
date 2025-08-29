@@ -39,3 +39,25 @@ localStorage.setItem('OPEN_METEO_API_BASE', 'http://dein-host:4000')
 ```
 GET http://localhost:4000/api/forecast?latitude=47.3769&longitude=8.5417&hourly=temperature_2m,weather_code&timezone=Europe/Zurich
 ```
+
+## 1. Planung Stand 22.08.25 
+
+### Ziel:
+Eine kleine Wetter-App, die Vorhersagedaten von Open-Meteo
+ abruft, im Backend cached und im Frontend visualisiert.
+
+### Technologien:
+
+**Backend:** Node.js, Express 
+
+**Frontend:** HTML, CSS, Chart.js (Diagramme)
+
+### Vorgehen:
+
+1. Backend aufsetzen 
+
+2. Frontend bauen → Form, Tabelle, Chart
+
+3. Tests planen
+
+4. Start lokal sicherstellen
