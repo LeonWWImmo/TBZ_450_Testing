@@ -27,6 +27,7 @@ Die Tests können mit Node.js ausgeführt werden:
 cd tests-preisberechnung
 node price.test.js
 
+---
 
 ## Aufgabe 3 – Bonus
 Im gegebenen Beispielcode gibt es einen Fehler in der Rabattlogik:  
