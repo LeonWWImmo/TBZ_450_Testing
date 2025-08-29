@@ -29,6 +29,7 @@ node price.test.js
 
 ---
 
+ ```
 ## Aufgabe 3 – Bonus
 Im gegebenen Beispielcode gibt es einen Fehler in der Rabattlogik:  
 Die Bedingung für 5 oder mehr Extras wird nie erreicht, weil bereits `extras >= 3` zuerst geprüft wird.  
@@ -51,3 +52,4 @@ else
 
 
 Damit funktioniert auch der 15%-Rabatt ab 5 Extras korrekt.
+```
