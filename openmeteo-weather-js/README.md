@@ -220,4 +220,67 @@ Folgende Szenarien sind abgedeckt:
 
 3. TEST 3 **Fehlerfälle**  
    - Wenn die API einen HTTP-Fehler liefert (`res.ok === false`),  
-     wirft die Funktion eine klare Fehlermeldung mit Statuscode
+     wirft die Funktion eine klare Fehlermeldung mit 
+
+## TAG 07 Übungen     
+## Testing Backend 
+Die Controller-Tests prüfen den Weather Controller (routes/weather.js), der auf dem Express-Server läuft.
+Hierbei wird Supertest verwendet, um echte HTTP-Requests gegen die Express-App (index.js) zu simulieren.
+
+### Controller
+**Fehlerfall** 
+
+- Request ohne latitude → Controller gibt 400 Bad Request mit Fehlermeldung zurück.
+- Request ohne Vorhersageparameter → Controller gibt 400 Bad Request zurück.
+-Wenn getForecast im Service einen Fehler wirft → Controller gibt 502 Bad Gateway zurück.
+
+**gültige Anfrage**
+
+Request mit latitude, longitude und hourly → Service wird aufgerufen, Controller gibt 200 OK + JSON zurück.
+
+### Service-/Mapper-Tests
+Die Service-Tests prüfen die Hilfsklasse openMeteo.js.
+Dieser Service kümmert sich um Caching und API-Kommunikation mit Open-Meteo.
+
+**Deterministisches Verhalten von `cacheKey`**
+- Reihenfolge der Parameter darf keinen Einfluss auf den Key haben.
+
+**Caching-Verhalten von `getForecast`**
+- Beim ersten Aufruf wird ein API-Call durchgeführt (hier per `fetch` gemockt).
+- Beim zweiten Aufruf mit gleichen Parametern wird das Ergebnis **aus dem Cache** zurückgegeben.
+- Mit **Chai SoftAssertions (`chaiExpect`)** wird überprüft, dass mehrere Bedingungen gleichzeitig erfüllt sind:
+  - Ergebnis enthält `{ ok: true }`
+  - Beide Ergebnisse (`res1` und `res2`) sind inhaltlich korrekt
+  - Beide Referenzen zeigen auf dasselbe Objekt (Cache).
+
+**Fehlerfall – API-Error**
+- Wenn `fetch` einen Fehlerstatus liefert (`ok: false`) → `getForecast` wirft eine Exception.
+
+#### Relultat 
+![alt text](image.png)
+
+### Reports 
+Für automatisierte Reports wurde Vitest Coverage eingerichtet.
+#### package.json
+```
+"scripts": {
+  "test": "vitest --run",
+  "coverage": "vitest run --coverage"
+}
+```
+
+#### vitest.config.js
+```
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html"],
+      reportsDirectory: "./coverage",
+    },
+  },
+});
+```
+![alt text](image-1.png)
