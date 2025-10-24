@@ -284,3 +284,66 @@ export default defineConfig({
 });
 ```
 ![alt text](image-1.png)
+
+
+## Pipeline
+```
+name: Node.js CI – OpenMeteo Weather
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: openmeteo-weather-js/server  
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: echo "Build step – Node/Express benötigt keinen Build-Prozess."
+
+      - name: Run tests
+        run: npx vitest --run --reporter=junit --outputFile=vitest-report.xml
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitest-report
+          path: openmeteo-weather-js/server/vitest-report.xml
+ 
+```
+### Auslöser
+- **Push** auf den Branch `main`
+- **Pull Request** auf den Branch `main`
+
+### Ablauf
+
+| Schritt | Beschreibung |
+|----------|---------------|
+| **Checkout repository** | Klont das Repository in den Runner |
+| **Setup Node.js** | Installiert Node.js Version 20 |
+| **Install dependencies** | Führt `npm ci` aus, um Abhängigkeiten zu installieren |
+| **Build project** | Kein Build-Prozess notwendig (Node/Express) |
+| **Run tests** | Führt Tests mit `vitest` aus und erstellt einen JUnit-Testreport |
+| **Upload test report** | Lädt den Testreport als Artefakt hoch |
+
+![alt text](image-2.png)
+![alt text](image-3.png)
+In diesem Bild sieht man, dass die Pipeline funktioniert und die Tests auch erfolgreicht durchgegangen sind
