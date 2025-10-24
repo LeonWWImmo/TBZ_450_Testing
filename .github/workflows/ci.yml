@@ -10,6 +10,10 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: openmeteo-weather-js/server  
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,20 +24,16 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: |
-          cd server
-          npm ci
+        run: npm ci
 
       - name: Build project
-        run: echo "Build step – no compilation needed for Node/Express."
+        run: echo "Build step – Node/Express benötigt keinen Build-Prozess."
 
       - name: Run tests
-        run: |
-          cd server
-          npx vitest --run --reporter=junit --outputFile=vitest-report.xml
+        run: npx vitest --run --reporter=junit --outputFile=vitest-report.xml
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
         with:
           name: vitest-report
-          path: server/vitest-report.xml
+          path: openmeteo-weather-js/server/vitest-report.xml
