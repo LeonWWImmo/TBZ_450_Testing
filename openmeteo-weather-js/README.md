@@ -346,4 +346,4 @@ jobs:
 
 ![alt text](image-2.png)
 ![alt text](image-3.png)
-In diesem Bild sieht man, dass die Pipeline funktioniert und die Tests auch erfolgreicht durchgegangen sind
+In diesem Bild sieht man, dass die Pipeline funktioniert und die Tests auch erfolgreicht durchgegangen sind. Unter diesen [Link](https://github.com/LeonWWImmo/TBZ_450_Testing/actions/runs/18772781344/job/53560511314) ist die Pipeline.
