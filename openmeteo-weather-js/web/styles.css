@@ -200,3 +200,56 @@ body {
   to { opacity: 1; }
 }
 }
+
+.recipe-item {
+  display: grid;
+  gap: .45rem;
+}
+.recipe-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+.recipe-meta {
+  opacity: .75;
+  font-size: .92rem;
+}
+.recipe-actions {
+  margin-top: .5rem;
+  display: flex;
+  gap: .5rem;
+}
+ 
+/* Formular */
+input, textarea {
+  width: 100%;
+  padding: .6rem .7rem;
+  border-radius: 10px;
+  border: 1px solid #0002;
+  background: var(--card-bg, #fff);
+  color: inherit;
+}
+ 
+/* Buttons */
+.button, button, [type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem .9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--brand) 35%, #0000);
+  background: linear-gradient(180deg, var(--brand-2), var(--brand));
+  color: #fff;
+  box-shadow: var(--shadow-xs);
+  cursor: pointer;
+  transition: transform .1s ease;
+}
+.button:hover, button:hover {
+  transform: translateY(-1px);
+}
+.button.secondary {
+  background: transparent;
+  color: inherit;
+  border: 1px solid #0002;
+}
