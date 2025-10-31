@@ -41,4 +41,6 @@ describe("Weather Controller (/api/forecast)", () => {
     expect(res.status).toBe(502);
     expect(res.body).toHaveProperty("error", "Failed to fetch forecast");
   });
+
+
 });

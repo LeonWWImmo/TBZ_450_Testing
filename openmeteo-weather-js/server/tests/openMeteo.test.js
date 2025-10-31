@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 const importService = async () => {
   vi.stubEnv("CACHE_TTL_MS", "60000");
   vi.resetModules();
-  return await import("./openMeteo.js");
+  return await import("../src/services/openMeteo.js");
 };
 
 describe("getForecast()", () => {
