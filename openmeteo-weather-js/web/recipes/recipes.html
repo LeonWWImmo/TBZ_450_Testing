@@ -1,16 +1,26 @@
-    <!DOCTYPE html><html lang="de"><head>
-    <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>🍝 Rezepte – Liste</title><link rel="stylesheet" href="../styles.css"/>
-    </head><body data-theme="auto">
-    <main class="container">
-        <nav class="main-nav">
-        <a href="../index.html">🌤 Wetter</a>
-        <a href="../about.html">⚖️ Rechtliches</a>
-        <a href="recipes/recipes.html">🍝 Rezepte</a>
-        <a href="recipes-new.html">➕ Neues Rezept</a>
-    </nav>
-        <h1>🍝 Rezepte</h1>
-        <div id="recipe-list"></div>
-    </main>
-    <script src="recipes.js"></script>
-    </body></html>
+<!-- /recipes/recipes.html -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>🍝 Rezepte</title>
+  <link rel="stylesheet" href="../styles.css"/>
+</head>
+<body data-theme="auto">
+  <nav class="main-nav" aria-label="Hauptnavigation">
+    <a href="../index.html">🌤 Wetter</a>
+    <a href="../about.html">⚖️ Rechtliches</a>
+    <a href="recipes.html" aria-current="page">🍝 Rezepte</a>
+    <a href="recipes-new.html">➕ Neues Rezept</a>
+  </nav>
+
+  <main class="container fade-in">
+    <h1>🍝 Rezepte</h1>
+    <section id="recipe-list" class="card" aria-live="polite" role="region" aria-label="Rezeptliste"></section>
+    <p class="muted">Gespeichert im Browser. Export/Backup via Copy-Paste möglich.</p>
+  </main>
+
+  <script src="recipes.js"></script>
+</body>
+</html>

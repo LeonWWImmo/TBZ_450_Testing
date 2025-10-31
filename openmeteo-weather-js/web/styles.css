@@ -1,3 +1,4 @@
+/* /styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
 
 :root {
@@ -7,16 +8,23 @@
   --text: #111;
   --primary: #4dabf7;
   --accent: #339af0;
+  --brand: #4dabf7;
+  --brand-2: #74c0fc;
   --shadow: 0 4px 20px #0001;
+  --shadow-xs: 0 1px 3px #0002;
 }
 
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: 'Outfit', system-ui, sans-serif;
   background: linear-gradient(to top, #d0e7ff, #f8f9fa);
   color: var(--text);
-  transition: all 0.3s ease-in-out;
+  transition: background .3s ease-in-out;
+  opacity: 0;
+  animation: fadeIn .6s ease forwards;
 }
+@keyframes fadeIn { to { opacity: 1; } }
 
 .container {
   max-width: 1200px;
@@ -25,107 +33,111 @@ body {
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   color: var(--primary);
 }
 
-form {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background: var(--card-bg);
-  border-radius: 1rem;
-  box-shadow: var(--shadow);
-}
-
-label {
+.main-nav {
   display: flex;
-  flex-direction: column;
-  font-size: 0.95rem;
-  color: #444;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  background: var(--card-bg);
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 4px 10px #0002;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 0 0 1rem 1rem;
 }
-
-input {
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+.main-nav a {
+  color: var(--primary);
+  text-decoration: none;
+  padding: .25rem .5rem;
+  border-radius: .5rem;
 }
-
-button {
-  grid-column: span 2;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
+.main-nav a:hover, .main-nav a[aria-current="page"] {
+  color: #fff;
   background: var(--accent);
 }
 
 .card {
   background: var(--card-bg);
   border-radius: 1rem;
-  padding: 2rem;
-  margin-top: 2rem;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
   box-shadow: var(--shadow);
 }
 
-.card h2 {
-  margin-top: 0;
-  font-size: 1.6rem;
-  color: var(--primary);
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
-
-.chart-wrap {
-  position: relative;
-  height: 300px;
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: #444;
 }
-
-.table-wrap {
-  overflow: auto;
-  max-height: 60vh;
-  border-radius: 1rem;
-  border: 1px solid #dee2e6;
-}
-
-#hours {
+input, textarea {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 1rem;
+  padding: .6rem .7rem;
+  border-radius: 10px;
+  border: 1px solid #0002;
+  background: var(--card-bg);
+  color: inherit;
+}
+input:focus, textarea:focus, a.button:focus, button:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex; gap: .6rem; flex-wrap: wrap;
+}
+.help, .muted { opacity: .7; font-size: .95rem; grid-column: 1 / -1; }
+
+.button, button, [type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem .9rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--brand) 35%, #0000);
+  background: linear-gradient(180deg, var(--brand-2), var(--brand));
+  color: #fff;
+  box-shadow: var(--shadow-xs);
+  cursor: pointer;
+  transition: transform .1s ease, filter .2s ease;
+}
+.button:hover, button:hover { transform: translateY(-1px); filter: brightness(1.03); }
+.button.secondary, button.secondary {
+  background: transparent; color: inherit; border: 1px solid #0002;
 }
 
-#hours th, #hours td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #dee2e6;
-  text-align: left;
-}
+#status { min-height: 1.5rem; font-weight: 600; padding: 0.5rem; }
+.info { color: #2c3e50; }
+.error { color: #e03131; font-weight: 700; }
+.error-inline { color: #e03131; }
 
-#status {
-  min-height: 1.5rem;
-  font-weight: 500;
-  padding: 0.5rem;
-  color: #555;
-}
+/* Chart & table */
+.chart-wrap { position: relative; height: 300px; }
+.table-wrap { overflow: auto; max-height: 60vh; border-radius: 1rem; border: 1px solid #dee2e6; }
+#hours { width: 100%; border-collapse: collapse; font-size: 1rem; }
+#hours th, #hours td { padding: 0.75rem 1rem; border-bottom: 1px solid #dee2e6; text-align: left; white-space: nowrap; }
 
-.info {
-  color: #2c3e50;
-}
+/* Weather themed backgrounds (applies in light & dark) */
+body[data-weather='sunny']  { background: linear-gradient(to top, #ffe680, #fffdf0); }
+body[data-weather='cloudy'] { background: linear-gradient(to top, #b0bec5, #eceff1); }
+body[data-weather='rainy']  { background: linear-gradient(to top, #4dabf7, #a5d8ff); }
+body[data-weather='snowy']  { background: linear-gradient(to top, #dbe4f1, #f8f9fa); }
+body[data-weather='stormy'] { background: linear-gradient(to top, #495057, #343a40); }
+body[data-weather='foggy']  { background: linear-gradient(to top, #cfd8dc, #eceff1); }
 
-.error {
-  color: #e03131;
-  font-weight: 600;
-}
-
+/* Dark scheme overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0e0f11;
@@ -135,121 +147,19 @@ button:hover {
     --accent: #228be6;
     --shadow: 0 4px 20px #0009;
   }
-  body {
-    background: linear-gradient(to top, #1a1b1e, #0e0f11);
-  }
-  label { color: #ccc; }
-  input {
-    background: #2e2e33;
-    border-color: #444;
-    color: #fff;
-  }
-  #hours th, #hours td {
-    border-color: #444;
-  }
-
-  body[data-weather='sunny'] {
-  background: linear-gradient(to top, #ffe680, #fffdf0);
-}
-body[data-weather='cloudy'] {
-  background: linear-gradient(to top, #b0bec5, #eceff1);
-}
-body[data-weather='rainy'] {
-  background: linear-gradient(to top, #4dabf7, #a5d8ff);
-}
-body[data-weather='snowy'] {
-  background: linear-gradient(to top, #dbe4f1, #f8f9fa);
-}
-body[data-weather='stormy'] {
-  background: linear-gradient(to top, #495057, #343a40);
-}
-body[data-weather='foggy'] {
-  background: linear-gradient(to top, #cfd8dc, #eceff1);
+  body { background: linear-gradient(to top, #1a1b1e, #0e0f11); }
+  label { color: #ddd; }
+  input, textarea { background: #2e2e33; border-color: #444; color: #fff; }
+  #hours th, #hours td { border-color: #444; }
 }
 
-.main-nav {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1.2rem 0;
-  background: var(--card-bg);
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0 4px 10px #0002;
-  font-size: 1.1rem;
-  font-weight: 500;
-  border-radius: 0 0 1rem 1rem;
-}
+/* Recipes small polish */
+.recipe-item { display: grid; gap: .45rem; }
+.recipe-title { font-size: 1.1rem; margin: 0; }
+.recipe-meta { opacity: .75; font-size: .92rem; }
+.recipe-actions { margin-top: .5rem; display: flex; gap: .5rem; }
 
-.main-nav a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.main-nav a:hover {
-  color: var(--accent);
-  transform: scale(1.1);
-}
-
-body {
-  opacity: 0;
-  animation: fadeIn 0.8s ease forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-}
-
-.recipe-item {
-  display: grid;
-  gap: .45rem;
-}
-.recipe-title {
-  font-size: 1.1rem;
-  margin: 0;
-}
-.recipe-meta {
-  opacity: .75;
-  font-size: .92rem;
-}
-.recipe-actions {
-  margin-top: .5rem;
-  display: flex;
-  gap: .5rem;
-}
- 
-/* Formular */
-input, textarea {
-  width: 100%;
-  padding: .6rem .7rem;
-  border-radius: 10px;
-  border: 1px solid #0002;
-  background: var(--card-bg, #fff);
-  color: inherit;
-}
- 
-/* Buttons */
-.button, button, [type="submit"] {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  padding: .6rem .9rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 10px;
-  border: 1px solid color-mix(in oklab, var(--brand) 35%, #0000);
-  background: linear-gradient(180deg, var(--brand-2), var(--brand));
-  color: #fff;
-  box-shadow: var(--shadow-xs);
-  cursor: pointer;
-  transition: transform .1s ease;
-}
-.button:hover, button:hover {
-  transform: translateY(-1px);
-}
-.button.secondary {
-  background: transparent;
-  color: inherit;
-  border: 1px solid #0002;
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
