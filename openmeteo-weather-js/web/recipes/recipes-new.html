@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="de"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>➕ Neues Rezept</title><link rel="stylesheet" href="styles.css"/>
+</head><body data-theme="auto">
+
+  <main class="container">
+        <nav class="main-nav">
+    <a href="../index.html">🌤 Wetter</a>
+    <a href="../forecast.html">📊 Vorhersage</a>
+    <a href="../about.html">⚖️ Rechtliches</a>
+    <a href="recipes.html">🍝 Rezepte</a>
+    <a href="recipes-new.html">➕ Neues Rezept</a>
+  </nav>
+    <h1>Neues Rezept</h1>
+    <form id="recipe-form" class="card">
+      <div><label for="r-title">Titel</label>
+        <input id="r-title" required placeholder="z.B. Lasagne"/></div>
+      <div><label for="r-desc">Beschreibung</label>
+        <textarea id="r-desc" placeholder="Kurzbeschreibung"></textarea></div>
+      <div><label for="r-ing">Zutaten (kommagetrennt)</label>
+        <input id="r-ing" placeholder="Mehl, Milch, Eier"/></div>
+      <div style="grid-column:1/-1;display:flex;gap:1rem">
+        <button type="submit">Anlegen</button>
+        <a class="button" href="recipes.html">Abbrechen</a>
+      </div>
+      <p id="recipe-error" style="color:crimson;grid-column:1/-1"></p>
+    </form>
+  </main>
+  <script src="recipes.js"></script>
+</body></html>
