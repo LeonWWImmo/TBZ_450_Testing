@@ -35,7 +35,7 @@ npm install
 npm start   # http://localhost:4000
 
 # Frontend
-# Öffne web/index.html direkt im Browser
+# Öffne web/index.html direkt im Browser öffnen mit Live server
 
 #Test 
 cd openmethe-wather-js/server

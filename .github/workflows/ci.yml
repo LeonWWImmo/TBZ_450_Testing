@@ -30,8 +30,7 @@ jobs:
         run: echo "Build step – Node/Express benötigt keinen Build-Prozess."
 
       - name: Run tests
-        run: npx vitest --run --reporter=junit --outputFile=vitest-report.xml
-
+        run: npx vitest --run --reporter=html --outputFile=public/index.html
       - name: Upload test report
         uses: actions/upload-artifact@v4
         with:
