@@ -1,3 +1,4 @@
+<!-- /about.html -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,9 +8,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <nav class="main-nav">
+  <nav class="main-nav" aria-label="Hauptnavigation">
     <a href="index.html">🌤 Wetter</a>
-    <a href="about.html">⚖️ Rechtliches</a>
+    <a href="about.html" aria-current="page">⚖️ Rechtliches</a>
     <a href="recipes/recipes.html">🍝 Rezepte</a>
     <a href="recipes/recipes-new.html">➕ Neues Rezept</a>
   </nav>
@@ -17,15 +18,17 @@
     <h1>⚖️ Rechtliches & Datenschutz</h1>
     <section class="card">
       <h2>🔐 Datenschutz</h2>
-      <p>Diese App speichert keine personenbezogenen Daten.</p>
+      <p>Diese App speichert keine personenbezogenen Daten auf Servern. Einstellungen liegen lokal im Browser (LocalStorage).</p>
 
       <h2>📄 Haftungsausschluss</h2>
       <p>Alle Wetterdaten stammen von <strong>open-meteo.com</strong>. Es besteht keine Gewährleistung für Genauigkeit oder Verfügbarkeit.</p>
 
       <h2>👨‍💻 Entwickler</h2>
-      <p>Projekt von <em>Levin Pamay</em></p><br>
-      <p><em>Leon Neuhaus</em></p>
-      <p><em>Ajna Kryeziu</em></p>
+      <ul>
+        <li>Levin Pamay</li>
+        <li>Leon Neuhaus</li>
+        <li>Ajna Kryeziu</li>
+      </ul>
     </section>
   </main>
 </body>
