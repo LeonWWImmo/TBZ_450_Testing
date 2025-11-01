@@ -9,10 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download test report
+      - name: Download test artifact
         uses: actions/download-artifact@v4
         with:
           name: vitest-report
