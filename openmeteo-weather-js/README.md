@@ -257,7 +257,7 @@ Dieser Service kümmert sich um Caching und API-Kommunikation mit Open-Meteo.
 - Wenn `fetch` einen Fehlerstatus liefert (`ok: false`) → `getForecast` wirft eine Exception.
 
 #### Relultat 
-![alt text](image.png)
+![alt text](Pictures/image.png)
 
 ### Reports 
 Für automatisierte Reports wurde Vitest Coverage eingerichtet.
@@ -283,7 +283,7 @@ export default defineConfig({
   },
 });
 ```
-![alt text](image-1.png)
+![alt text](Pictures/image-1.png)
 
 
 ## Pipeline
@@ -344,6 +344,6 @@ jobs:
 | **Run tests** | Führt Tests mit `vitest` aus und erstellt einen JUnit-Testreport |
 | **Upload test report** | Lädt den Testreport als Artefakt hoch |
 
-![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](Pictures/image-2.png)
+![alt text](Pictures/image-3.png)
 In diesem Bild sieht man, dass die Pipeline funktioniert und die Tests auch erfolgreicht durchgegangen sind. Unter diesen [Link](https://github.com/LeonWWImmo/TBZ_450_Testing/actions/runs/18772781344/job/53560511314) ist die Pipeline.
