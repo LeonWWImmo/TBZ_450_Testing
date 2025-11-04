@@ -9,3 +9,8 @@
 ---
 ## Levin Pamay
 [Aufgaben von Levin](https://github.com/Le999vin/M450-Uebungen.git)
+
+# Dokus im Projekts
+[Testbeschreibungen](./Tests.md) <br>
+[Test Konzept](./Planning-Test.md) <br>
+[Projekt Beschreibung](./README.md)
