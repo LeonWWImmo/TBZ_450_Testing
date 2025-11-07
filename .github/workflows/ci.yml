@@ -13,16 +13,22 @@ jobs:
       run:
         working-directory: openmeteo-weather-js/web
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
           cache-dependency-path: openmeteo-weather-js/web/package-lock.json
+
       - name: Install deps (web)
         run: npm ci
+
       - name: Run frontend tests
         run: npx vitest --run --reporter=default
+
       - name: Upload coverage
         if: always()
         uses: actions/upload-artifact@v4
@@ -30,25 +36,30 @@ jobs:
           name: web-coverage
           path: openmeteo-weather-js/web/coverage
           if-no-files-found: ignore
-
   server-tests:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: openmeteo-weather-js/server
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
           cache-dependency-path: openmeteo-weather-js/server/package-lock.json
+
       - name: Install deps (server)
         run: npm ci
+
       - name: Run server tests (skip if none)
         run: |
-          if [ -f vitest.config.js ] || ls tests/**/*.test.* 2>/dev/null; then
-            npx vitest --run --reporter=default
+          if [ -n "$(find tests -type f -name '*.test.*' 2>/dev/null)" ]; then
+            echo "Running server tests..."
+            npx vitest --run --reporter=default --environment node
           else
             echo "No server tests found. Skipping."
           fi
