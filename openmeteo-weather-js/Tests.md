@@ -38,3 +38,31 @@
 | **4** | **soll 502 zurückgeben, wenn Service einen Fehler wirft** | Wirft der Service (`getForecast`) einen Fehler, antwortet der Controller mit **HTTP 502** und Body `{ error: "Failed to fetch forecast" }`. |
 
 ---
+## Tests im Frontend
+
+### Was macht `setupDOM()` in diesem Projekt?
+
+`setupDOM()` ist der **Mini-Browser-Simulator** des Projekts.  
+Er sorgt dafür, dass die Funktionen aus `app.js` in einer **künstlichen Browser-Umgebung** getestet werden können.
+
+Ohne diese Funktion würde der Code in Node.js nicht laufen,  
+weil dort Dinge wie `window`, `document`, `fetch` oder `navigator` fehlen.
+
+
+
+
+| Nr | Testname | Beschreibung |
+|----|-----------|--------------|
+| 1 | **parseNum** | Prüft, ob Textzahlen richtig umgewandelt werden (`"3,5"` → `3.5`) und ungültige Werte (`"abc"`) `null` ergeben. |
+| 2 | **paramsFromUI** | Liest Eingaben aus den Formularfeldern (`lat`, `lon`, `hourly`, `tz`) und erstellt ein korrektes Parameterobjekt. |
+| 3 | **syncToURL & syncFromURL** | Testet, ob Formularwerte in die URL geschrieben und wieder korrekt daraus gelesen werden können. |
+| 4 | **buildURL** | Überprüft, ob die API-URL korrekt erstellt wird (mit `latitude`, `longitude`, `hourly`, `timezone`). |
+| 5 | **weatherIcon/Text** | Testet, ob für jeden Wettercode ein passendes Symbol und Text angezeigt wird; bei unbekanntem Code „Unbekannt“. |
+| 6 | **setStatus** | Prüft, ob Statusmeldungen im Frontend korrekt angezeigt und CSS-Klassen gesetzt werden. |
+| 7 | **setWeatherBackground** | Testet, ob der Seitenhintergrund abhängig vom Wettercode angepasst wird (`data-weather`-Attribut). |
+| 8 | **renderTable** | Überprüft, ob aus den Wetterdaten eine Tabellenzeile im HTML erstellt wird. |
+| 9 | **renderChart** | Prüft, ob ein Diagramm-Objekt (Chart.js) erstellt wird – über einen Mock. |
+| 10 | **fetchJSON** | Simuliert einen API-Aufruf mit `fetch` und prüft, ob die JSON-Daten korrekt verarbeitet werden. |
+| 11 | **geolocate** | Testet, ob `navigator.geolocation` aufgerufen wird und die Koordinaten (`lat`, `lon`) im Formular eingetragen werden. |
+
+---
