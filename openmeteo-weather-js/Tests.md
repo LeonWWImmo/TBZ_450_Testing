@@ -30,12 +30,15 @@
 ---
 
 **`weatherController.test.js`**
+
 | Nr. | Testname | Beschreibung |
-|----:|----------|--------------|
-| **1** | **soll 400 zurückgeben, wenn latitude fehlt** | Request ohne `latitude` (`/api/forecast?longitude=7&hourly=temp`) führt zu **HTTP 400**. Die Fehlermeldung im Body enthält den Hinweis auf `latitude`. |
-| **2** | **soll 400 zurückgeben, wenn keine hourly/daily/current Parameter gesetzt sind** | Request ohne **mindestens einen** Daten-Selektor (`hourly`, `daily` oder `current`) führt zu **HTTP 400**. Die Fehlermeldung enthält „Mindestens“. |
-| **3** | **soll Forecast zurückgeben (Happy Path)** | Gültiger Request mit `latitude`, `longitude` und `hourly` liefert **HTTP 200** und den vom gemockten Service zurückgegebenen Payload `{ mock: true, params }`. Es wird u. a. geprüft, dass `latitude` in `params` ankommt. |
-| **4** | **soll 502 zurückgeben, wenn Service einen Fehler wirft** | Wirft der Service (`getForecast`) einen Fehler, antwortet der Controller mit **HTTP 502** und Body `{ error: "Failed to fetch forecast" }`. |
+|----:|-----------|--------------|
+| **1** | **soll 400 zurückgeben, wenn latitude fehlt** | Simuliert einen Request ohne `latitude` → `/api/forecast?longitude=7&hourly=temp`. Der Controller erkennt den fehlenden Parameter und antwortet mit **HTTP 400**. |
+| **2** | **soll 400 zurückgeben, wenn keine hourly/daily/current Parameter gesetzt sind** | Testet, ob der Controller korrekt reagiert, wenn kein Datenparameter (`hourly`, `daily` oder `current`) angegeben ist. Erwartet wird **HTTP 400** mit einer entsprechenden Fehlermeldung. |
+| **3** | **soll Forecast zurückgeben (Happy Path)** | Prüft den erfolgreichen Ablauf mit gültigen Parametern (`latitude`, `longitude`, `hourly`). Der Service `getForecast` wird mit `vi.spyOn()` **gemockt** und liefert eine Beispielantwort `{ mock: true, params, data }`. Der Controller antwortet mit **HTTP 200** und übernimmt diese Werte. |
+| **4** | **soll 502 zurückgeben, wenn Service einen Fehler wirft** | Simuliert einen Fehler im Service: `getForecast` wird mit `mockRejectedValueOnce()` so eingestellt, dass er eine Exception wirft. Der Controller soll darauf mit **HTTP 502** reagieren und eine passende Fehlermeldung (`{ error: "Failed to fetch forecast" }`) zurückgeben. |
+
+---
 
 ---
 ## Tests im Frontend
