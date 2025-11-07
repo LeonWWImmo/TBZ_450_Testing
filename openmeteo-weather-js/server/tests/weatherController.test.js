@@ -1,7 +1,6 @@
-// tests/weatherController.test.js
 import request from "supertest";
-import app from "../src/index.js"; // oder dein Express-App-Export
-import * as openMeteo from "../src/services/openMeteo.js"; // Pfad prüfen!
+import app from "../src/index.js";
+import * as openMeteo from "../src/services/openMeteo.js"; 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
 describe("Weather Controller (/api/forecast)", () => {
@@ -25,7 +24,6 @@ describe("Weather Controller (/api/forecast)", () => {
   });
 
   it("soll Forecast zurückgeben (Happy Path)", async () => {
-    // 🔧 Service-Ergebnis vorgeben -> enthält "mock: true", wie dein Test erwartet
     vi.spyOn(openMeteo, "getForecast").mockResolvedValue({
       mock: true,
       params: { latitude: "47", longitude: "7", hourly: "temperature_2m" },
@@ -37,12 +35,11 @@ describe("Weather Controller (/api/forecast)", () => {
     );
 
     expect(res.status).toBe(200);
-    expect(res.body).toHaveProperty("mock", true); // ✅ passt jetzt
+    expect(res.body).toHaveProperty("mock", true); 
     expect(res.body.params).toHaveProperty("latitude", "47");
   });
 
   it("soll 502 zurückgeben, wenn Service einen Fehler wirft", async () => {
-    // 🔧 Fehler simulieren
     vi.spyOn(openMeteo, "getForecast").mockRejectedValueOnce(
       new Error("Service kaputt")
     );

@@ -31,21 +31,19 @@ function setupDOM() {
       matches: false,
       media: query,
       onchange: null,
-      addListener: vi.fn(),      // alte API
-      removeListener: vi.fn(),   // alte API
-      addEventListener: vi.fn(), // neue API
+      addListener: vi.fn(),      
+      removeListener: vi.fn(),   
+      addEventListener: vi.fn(), 
       removeEventListener: vi.fn(),
       dispatchEvent: vi.fn(),
     }));
   }
 
-  // Canvas-Context stub (falls abgefragt)
   const canvas = document.getElementById("tempChart");
   if (canvas && !canvas.getContext) {
     canvas.getContext = vi.fn(() => ({}));
   }
 
-  // fetch mock
   global.fetch = vi.fn(async () => ({
     ok: true,
     status: 200,
@@ -58,12 +56,10 @@ function setupDOM() {
     }),
   }));
 
-  // Chart mock
   global.Chart = vi.fn(function () {
     return { destroy: vi.fn(), update: vi.fn() };
   });
 
-  // geolocation mock
   global.navigator = dom.window.navigator;
   global.navigator.geolocation = {
     getCurrentPosition: (ok) =>
@@ -79,7 +75,6 @@ describe("app.js – Frontendfunktionen", () => {
   beforeEach(async () => {
     setupDOM();
 
-    // Windows-sicherer Pfad zu app.js
     const rawPath = new URL("../app.js", import.meta.url).pathname;
     const cleanPath = rawPath.replace(/^\/([A-Za-z]:)/, "$1"); // /C:/... -> C:/...
     app = await importTestableApp(cleanPath);
@@ -102,7 +97,6 @@ describe("app.js – Frontendfunktionen", () => {
   test("syncToURL & syncFromURL", () => {
     app.syncToURL({ lat: 1.23, lon: 4.56, hourly: "h", tz: "UTC" });
     expect(window.location.search).toContain("lat=1.23");
-    // reset inputs und zurück aus der URL lesen
     document.getElementById("lat").value = "";
     app.syncFromURL();
     expect(document.getElementById("lat").value).toBe("1.23");

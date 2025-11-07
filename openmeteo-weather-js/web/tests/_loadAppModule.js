@@ -1,10 +1,8 @@
-// tests/_loadAppModule.js
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
 export async function importTestableApp(originalPath) {
-  // Windows-fix für Pfad
   const cleanPath = path.resolve(originalPath.replace(/^\/([A-Za-z]:)/, "$1"));
   const src = fs.readFileSync(cleanPath, "utf-8");
 
@@ -25,7 +23,6 @@ export async function importTestableApp(originalPath) {
     "geolocate",
   ];
 
-  // fester Temp-Ordner in web/.cache/tests/tmp
   const tmpBase = path.join(process.cwd(), ".cache", "tests", "tmp");
   fs.mkdirSync(tmpBase, { recursive: true });
 
