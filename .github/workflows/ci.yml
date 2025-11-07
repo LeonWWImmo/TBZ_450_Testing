@@ -7,27 +7,48 @@ on:
     branches: [ main ]
 
 jobs:
-  build-test:
+  web-tests:
     runs-on: ubuntu-latest
-
     defaults:
       run:
-        working-directory: openmeteo-weather-js/server  
-
+        working-directory: openmeteo-weather-js/web
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Install dependencies
+          cache: npm
+          cache-dependency-path: openmeteo-weather-js/web/package-lock.json
+      - name: Install deps (web)
         run: npm ci
-
-      - name: Build project
-        run: echo "Build step – Node/Express benötigt keinen Build-Prozess."
-
-      - name: Run tests
+      - name: Run frontend tests
         run: npx vitest --run --reporter=default
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-coverage
+          path: openmeteo-weather-js/web/coverage
+          if-no-files-found: ignore
+
+  server-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: openmeteo-weather-js/server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: openmeteo-weather-js/server/package-lock.json
+      - name: Install deps (server)
+        run: npm ci
+      - name: Run server tests (skip if none)
+        run: |
+          if [ -f vitest.config.js ] || ls tests/**/*.test.* 2>/dev/null; then
+            npx vitest --run --reporter=default
+          else
+            echo "No server tests found. Skipping."
+          fi

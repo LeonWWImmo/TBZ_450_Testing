@@ -1,45 +1,23 @@
 # Open‑Meteo Wetter‑App (JS Backend + HTML/JS Frontend)
 
-## Struktur
-```
-├── openmeteo-weather-js/
-├── Repo_Aufgaben/
-├── server/
-│ ├── node_modules/
-│ ├── src/
-│ │ ├── routes/
-│ │ │ └── weather.js
-│ │ ├── services/
-│ │ │ ├── openMeteo.js
-│ │ │ └── openMeteo.test.js
-│ │ └── index.js
-│ ├── .env
-│ ├── .env.example
-│ ├── package-lock.json
-│ └── package.json
-├── web/
-│ ├── about.html
-│ ├── app.js
-│ ├── forecast.html
-│ ├── index.html
-│ ├── settings.html
-│ └── styles.css
-└── README.md
-```
-
 ## Start
 ```bash
 # Backend
-cd openmethe-wather-js/server
+cd openmetheo-weather-js/server
 npm install
 npm start   # http://localhost:4000
 
 # Frontend
 # Öffne web/index.html direkt im Browser öffnen mit Live server
 
-#Test 
-cd openmethe-wather-js/server
+#Test Backend
+cd openmetheo-weather-js/server
 npm test 
+
+#Test Frontend 
+cd openmetheo-weather-js/web
+npm install
+npx vitest
 ```
 
 

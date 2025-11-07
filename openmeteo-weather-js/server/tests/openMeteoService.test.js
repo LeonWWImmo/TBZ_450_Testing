@@ -1,4 +1,3 @@
-// tests/openMeteo.merged.test.js
 import { describe, expect, it, vi } from "vitest";
 import { expect as chaiExpect } from "chai";
 

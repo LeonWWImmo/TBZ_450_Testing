@@ -11,6 +11,6 @@
 [Aufgaben von Levin](https://github.com/Le999vin/M450-Uebungen.git)
 
 # Dokus im Projekts
-[Testbeschreibungen](./Tests.md) <br>
-[Test Konzept](./Planning-Test.md) <br>
-[Projekt Beschreibung](./README.md)
+[Testbeschreibungen](./openmeteo-weather-js/Tests.md) <br>
+[Test Konzept](./openmeteo-weather-js/Planning-Test.md) <br>
+[Projekt Beschreibung](./openmeteo-weather-js/README.md)
